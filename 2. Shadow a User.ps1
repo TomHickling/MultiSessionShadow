@@ -76,13 +76,13 @@ $AzureTenantID          = "<Azure Tenant ID Here>"
 $ScriptPath             = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $svcPrincipalIDPWD      = Get-Content "$ScriptPath\WVDSvcPrincipal_Password.txt" | ConvertTo-SecureString
 
-# Or Log onto Management plane using a RDS Owner user account
-#Add-RdsAccount -DeploymentUrl https://rdbroker.wvd.microsoft.com -Credential "<upn@domain.com">
-
-
 Write-Host ; Write-Host $(Get-Date -Format HH:mm:ss:) -ForegroundColor Gray -NoNewLine ; Write-Host " Connecting the WVD Platform"
 $creds                  = New-Object System.Management.Automation.PSCredential($svcPrincipalID, ($svcPrincipalIDPWD))
 $HideOutput             = Add-RdsAccount -DeploymentUrl "https://rdbroker.wvd.microsoft.com" -Credential $creds -ServicePrincipal -AadTenantId $AzureTenantID
+
+# Or Log onto Management plane using a RDS Owner user account
+#Add-RdsAccount -DeploymentUrl https://rdbroker.wvd.microsoft.com -Credential "<upn@domain.com">
+
 
 #Gather Host Pool Details
 Write-Host ; Write-Host $(Get-Date -Format HH:mm:ss:) -ForegroundColor Gray -NoNewLine ; Write-Host " Gathering Available Host Pools"
