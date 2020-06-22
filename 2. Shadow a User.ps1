@@ -40,7 +40,7 @@
 $TenantName = "<WVD Tenant Name Here>"
 
 cls
-# Load PowerShell Modules
+# Load PowerShell Modules if needed.
 Write-Host $(Get-Date -Format HH:mm:ss:) -ForegroundColor Gray -NoNewLine ; Write-Host " Loading PowerShell Modules"
 $Modules = @('Microsoft.RDInfra.RDPowerShell')
 Foreach ($Module in $Modules) {
@@ -69,12 +69,16 @@ Foreach ($Module in $Modules) {
         }
     }
 
-# Log onto Management Plain using Service Principal
+# Log onto Management Plane using Service Principal
 $svcPrincipalID         = "<Service Principal ID Here>"
 $AzureTenantID          = "<Azure Tenant ID Here>"
 
 $ScriptPath             = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $svcPrincipalIDPWD      = Get-Content "$ScriptPath\WVDSvcPrincipal_Password.txt" | ConvertTo-SecureString
+
+# Or Log onto Management plane using a RDS Owner user account
+#Add-RdsAccount -DeploymentUrl https://rdbroker.wvd.microsoft.com -Credential "<upn@domain.com">
+#Set-RdsContext -TenantGroupName "Microsoft Internal"
 
 Write-Host ; Write-Host $(Get-Date -Format HH:mm:ss:) -ForegroundColor Gray -NoNewLine ; Write-Host " Connecting the WVD Platform"
 $creds                  = New-Object System.Management.Automation.PSCredential($svcPrincipalID, ($svcPrincipalIDPWD))
