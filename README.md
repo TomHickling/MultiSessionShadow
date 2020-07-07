@@ -8,4 +8,4 @@ Then 2. Shadow a User.ps1 will connect to your WVD tenant and list in a GUI all 
 If you are using a user account rather than a Service Principal you can remove teh Service Principal parts and just add and run: 
 Add-RdsAccount -DeploymentUrl https://rdbroker.wvd.microsoft.com -Credential "<UPN@domain.com>"
 
-Credit goes to Garry Downs at Ultima for creating the originals
+Credit goes to Garry Down at Ultima for creating the originals
