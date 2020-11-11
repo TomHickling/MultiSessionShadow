@@ -1,4 +1,4 @@
-These two PowerShell scripts will allow you to select any user logged into any Windows Virtual Desktop Session host within your tenant and then shaow that directly, rather then having to find the Sesison Host and Session ID.
+These two PowerShell scripts will allow you to select any user logged into any Windows Virtual Desktop Session host within your tenant and then shadow that directly, rather then having to find the Sesison Host and Session ID.
 
 Background info is here: https://xenithit.blogspot.com/2020/06/how-to-shadow-across-multiple-host_22.html
 
